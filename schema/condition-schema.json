@@ -59,6 +59,11 @@
         }
       }
     },
+    "attribute_of" : {
+      "type" : "object",
+      "$ref" : "urn:jsonschema:org:phenopackets:api:model:condition:OrganismalSite",
+      "description" : "the entity which this phenotype is about -- normally bundled into ontology class"
+    },
     "onset" : {
       "type" : "object",
       "id" : "urn:jsonschema:org:phenopackets:api:model:condition:TemporalRegion",

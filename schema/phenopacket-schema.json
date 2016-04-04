@@ -2,48 +2,8 @@
   "type" : "object",
   "id" : "urn:jsonschema:org:phenopackets:api:PhenoPacket",
   "properties" : {
-    "id" : {
-      "type" : "string"
-    },
     "title" : {
       "type" : "string"
-    },
-    "entities" : {
-      "type" : "array",
-      "items" : {
-        "type" : "object",
-        "id" : "urn:jsonschema:org:phenopackets:api:model:entity:Entity",
-        "properties" : {
-          "id" : {
-            "type" : "string",
-            "description" : "A unique identifier for the entity, can be either URI or CURIE"
-          },
-          "label" : {
-            "type" : "string",
-            "description" : "A string that contains the preferred natural language term to denote the entity"
-          }
-        }
-      }
-    },
-    "variants" : {
-      "type" : "array",
-      "items" : {
-        "type" : "object",
-        "id" : "urn:jsonschema:org:phenopackets:api:model:entity:Variant",
-        "properties" : {
-          "descriptionHGVS" : {
-            "type" : "string"
-          },
-          "id" : {
-            "type" : "string",
-            "description" : "A unique identifier for the entity, can be either URI or CURIE"
-          },
-          "label" : {
-            "type" : "string",
-            "description" : "A string that contains the preferred natural language term to denote the entity"
-          }
-        }
-      }
     },
     "persons" : {
       "type" : "array",
@@ -51,6 +11,14 @@
         "type" : "object",
         "id" : "urn:jsonschema:org:phenopackets:api:model:entity:Person",
         "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "A unique identifier for the entity, can be either URI or CURIE"
+          },
+          "label" : {
+            "type" : "string",
+            "description" : "A string that contains the preferred natural language term to denote the entity"
+          },
           "strain" : {
             "type" : "object",
             "id" : "urn:jsonschema:org:phenopackets:api:model:ontology:OntologyClass",
@@ -85,14 +53,6 @@
             "type" : "string",
             "description" : "An optional free text description that can enhance the ontology class based description"
           },
-          "id" : {
-            "type" : "string",
-            "description" : "A unique identifier for the entity, can be either URI or CURIE"
-          },
-          "label" : {
-            "type" : "string",
-            "description" : "A string that contains the preferred natural language term to denote the entity"
-          },
           "taxon" : {
             "type" : "object",
             "$ref" : "urn:jsonschema:org:phenopackets:api:model:ontology:OntologyClass",
@@ -114,6 +74,14 @@
         "type" : "object",
         "id" : "urn:jsonschema:org:phenopackets:api:model:entity:Organism",
         "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "A unique identifier for the entity, can be either URI or CURIE"
+          },
+          "label" : {
+            "type" : "string",
+            "description" : "A string that contains the preferred natural language term to denote the entity"
+          },
           "strain" : {
             "type" : "object",
             "$ref" : "urn:jsonschema:org:phenopackets:api:model:ontology:OntologyClass"
@@ -138,14 +106,6 @@
             "type" : "string",
             "description" : "An optional free text description that can enhance the ontology class based description"
           },
-          "id" : {
-            "type" : "string",
-            "description" : "A unique identifier for the entity, can be either URI or CURIE"
-          },
-          "label" : {
-            "type" : "string",
-            "description" : "A string that contains the preferred natural language term to denote the entity"
-          },
           "taxon" : {
             "type" : "object",
             "$ref" : "urn:jsonschema:org:phenopackets:api:model:ontology:OntologyClass",
@@ -161,7 +121,64 @@
         }
       }
     },
-    "phenotype_profile" : {
+    "variants" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "id" : "urn:jsonschema:org:phenopackets:api:model:entity:Variant",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "A unique identifier for the entity, can be either URI or CURIE"
+          },
+          "label" : {
+            "type" : "string",
+            "description" : "A string that contains the preferred natural language term to denote the entity"
+          },
+          "descriptionHGVS" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "diseases" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "id" : "urn:jsonschema:org:phenopackets:api:model:entity:Disease",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "A unique identifier for the entity, can be either URI or CURIE"
+          },
+          "label" : {
+            "type" : "string",
+            "description" : "A string that contains the preferred natural language term to denote the entity"
+          },
+          "types" : {
+            "type" : "array",
+            "description" : "Any instance can be positively described as the intersection of any number of ontology classes.",
+            "items" : {
+              "type" : "object",
+              "$ref" : "urn:jsonschema:org:phenopackets:api:model:ontology:OntologyClass"
+            }
+          },
+          "negated_types" : {
+            "type" : "array",
+            "description" : "Any instance can be assigned any number of negative classes.",
+            "items" : {
+              "type" : "object",
+              "$ref" : "urn:jsonschema:org:phenopackets:api:model:ontology:OntologyClass"
+            }
+          },
+          "description" : {
+            "type" : "string",
+            "description" : "An optional free text description that can enhance the ontology class based description"
+          }
+        }
+      }
+    },
+    "phenotypeAssociations" : {
       "type" : "array",
       "items" : {
         "type" : "object",
@@ -180,13 +197,6 @@
                   "type" : "object",
                   "id" : "urn:jsonschema:org:phenopackets:api:model:condition:Measurement",
                   "properties" : {
-                    "unit" : {
-                      "type" : "object",
-                      "$ref" : "urn:jsonschema:org:phenopackets:api:model:ontology:OntologyClass"
-                    },
-                    "magnitude" : {
-                      "type" : "number"
-                    },
                     "types" : {
                       "type" : "array",
                       "description" : "Any instance can be positively described as the intersection of any number of ontology classes.",
@@ -206,6 +216,31 @@
                     "description" : {
                       "type" : "string",
                       "description" : "An optional free text description that can enhance the ontology class based description"
+                    },
+                    "unit" : {
+                      "type" : "string",
+                      "description" : "the unit of measurement"
+                    },
+                    "value" : {
+                      "type" : "string",
+                      "description" : "the value of the measurement"
+                    },
+                    "property_values" : {
+                      "type" : "array",
+                      "description" : "a list of (property,value) pairs",
+                      "items" : {
+                        "type" : "object",
+                        "id" : "urn:jsonschema:org:phenopackets:api:model:ontology:PropertyLiteralValue",
+                        "properties" : {
+                          "filler" : {
+                            "type" : "string"
+                          },
+                          "property" : {
+                            "type" : "string",
+                            "description" : "the data property used"
+                          }
+                        }
+                      }
                     }
                   }
                 }
@@ -256,6 +291,11 @@
                     "description" : "An optional free text description that can enhance the ontology class based description"
                   }
                 }
+              },
+              "attribute_of" : {
+                "type" : "object",
+                "$ref" : "urn:jsonschema:org:phenopackets:api:model:condition:OrganismalSite",
+                "description" : "the entity which this phenotype is about -- normally bundled into ontology class"
               },
               "onset" : {
                 "type" : "object",
@@ -358,7 +398,7 @@
             "description" : "Any Association can have any number of pieces of evidence attached",
             "items" : {
               "type" : "object",
-              "id" : "urn:jsonschema:org:phenopackets:api:model:meta:Evidence",
+              "id" : "urn:jsonschema:org:phenopackets:api:model:evidence:Evidence",
               "properties" : {
                 "types" : {
                   "type" : "array",
@@ -391,12 +431,12 @@
                   "description" : "publications may be represented inside or outside the packet, so a key rather than object is used",
                   "items" : {
                     "type" : "object",
-                    "id" : "urn:jsonschema:org:phenopackets:api:model:meta:Publication",
+                    "id" : "urn:jsonschema:org:phenopackets:api:model:evidence:Publication",
                     "properties" : {
-                      "title" : {
+                      "id" : {
                         "type" : "string"
                       },
-                      "id" : {
+                      "title" : {
                         "type" : "string"
                       }
                     }
@@ -408,12 +448,23 @@
         }
       }
     },
-    "diagnosis_profile" : {
+    "diseaseOccurrenceAssociations" : {
       "type" : "array",
       "items" : {
         "type" : "object",
         "id" : "urn:jsonschema:org:phenopackets:api:model:association:DiseaseOccurrenceAssociation",
         "properties" : {
+          "entity" : {
+            "type" : "string"
+          },
+          "evidence" : {
+            "type" : "array",
+            "description" : "Any Association can have any number of pieces of evidence attached",
+            "items" : {
+              "type" : "object",
+              "$ref" : "urn:jsonschema:org:phenopackets:api:model:evidence:Evidence"
+            }
+          },
           "diseaseOcurrence" : {
             "type" : "object",
             "id" : "urn:jsonschema:org:phenopackets:api:model:condition:DiseaseOccurrence",
@@ -446,6 +497,11 @@
                     "type" : "object",
                     "$ref" : "urn:jsonschema:org:phenopackets:api:model:condition:OrganismalSite",
                     "description" : "the location in an organism or cell in which the phenotype manifests"
+                  },
+                  "attribute_of" : {
+                    "type" : "object",
+                    "$ref" : "urn:jsonschema:org:phenopackets:api:model:condition:OrganismalSite",
+                    "description" : "the entity which this phenotype is about -- normally bundled into ontology class"
                   },
                   "onset" : {
                     "type" : "object",
@@ -494,6 +550,11 @@
                 "$ref" : "urn:jsonschema:org:phenopackets:api:model:condition:OrganismalSite",
                 "description" : "the location in an organism or cell in which the phenotype manifests"
               },
+              "attribute_of" : {
+                "type" : "object",
+                "$ref" : "urn:jsonschema:org:phenopackets:api:model:condition:OrganismalSite",
+                "description" : "the entity which this phenotype is about -- normally bundled into ontology class"
+              },
               "onset" : {
                 "type" : "object",
                 "$ref" : "urn:jsonschema:org:phenopackets:api:model:condition:TemporalRegion",
@@ -515,45 +576,37 @@
                 "description" : "the environment in which the phenotype is expressed"
               }
             }
-          },
-          "entity" : {
-            "type" : "string"
-          },
-          "evidence" : {
-            "type" : "array",
-            "description" : "Any Association can have any number of pieces of evidence attached",
-            "items" : {
-              "type" : "object",
-              "$ref" : "urn:jsonschema:org:phenopackets:api:model:meta:Evidence"
-            }
           }
         }
       }
     },
-    "environment_profile" : {
+    "environmentAssociations" : {
       "type" : "array",
       "items" : {
         "type" : "object",
         "id" : "urn:jsonschema:org:phenopackets:api:model:association:EnvironmentAssociation",
         "properties" : {
+          "entity" : {
+            "type" : "string"
+          },
           "environment" : {
             "type" : "object",
             "$ref" : "urn:jsonschema:org:phenopackets:api:model:environment:Environment",
             "description" : "The environment which this association is about"
-          },
-          "entity" : {
-            "type" : "string"
           },
           "evidence" : {
             "type" : "array",
             "description" : "Any Association can have any number of pieces of evidence attached",
             "items" : {
               "type" : "object",
-              "$ref" : "urn:jsonschema:org:phenopackets:api:model:meta:Evidence"
+              "$ref" : "urn:jsonschema:org:phenopackets:api:model:evidence:Evidence"
             }
           }
         }
       }
+    },
+    "@id" : {
+      "type" : "string"
     }
   }
 }

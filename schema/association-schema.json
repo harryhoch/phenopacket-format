@@ -2,15 +2,12 @@
   "type" : "object",
   "id" : "urn:jsonschema:org:phenopackets:api:model:association:Association",
   "properties" : {
-    "entity" : {
-      "type" : "string"
-    },
     "evidence" : {
       "type" : "array",
       "description" : "Any Association can have any number of pieces of evidence attached",
       "items" : {
         "type" : "object",
-        "id" : "urn:jsonschema:org:phenopackets:api:model:meta:Evidence",
+        "id" : "urn:jsonschema:org:phenopackets:api:model:evidence:Evidence",
         "properties" : {
           "types" : {
             "type" : "array",
@@ -53,12 +50,12 @@
             "description" : "publications may be represented inside or outside the packet, so a key rather than object is used",
             "items" : {
               "type" : "object",
-              "id" : "urn:jsonschema:org:phenopackets:api:model:meta:Publication",
+              "id" : "urn:jsonschema:org:phenopackets:api:model:evidence:Publication",
               "properties" : {
-                "title" : {
+                "id" : {
                   "type" : "string"
                 },
-                "id" : {
+                "title" : {
                   "type" : "string"
                 }
               }
@@ -66,6 +63,9 @@
           }
         }
       }
+    },
+    "entity" : {
+      "type" : "string"
     }
   }
 }
